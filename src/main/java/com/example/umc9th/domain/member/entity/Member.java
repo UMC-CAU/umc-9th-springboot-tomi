@@ -29,7 +29,7 @@ public class Member extends BaseEntity {
     @Column(name="social_type", nullable=false)
     String social_type;
 
-    @Column(name = "name", length=5, nullable=false)
+    @Column(name = "name", length=10, nullable=false)
     private String name;
 
     @Column(name = "gender", nullable=false)
