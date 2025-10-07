@@ -22,6 +22,6 @@ public class Store {
     private String address;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "region_id")
+    @JoinColumn(name = "region_id", nullable=false)
     private Region region;
 }

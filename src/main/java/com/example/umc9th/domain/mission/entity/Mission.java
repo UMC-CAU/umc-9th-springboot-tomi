@@ -29,6 +29,6 @@ public class Mission extends BaseEntity {
     private int score;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "store_id")
+    @JoinColumn(name = "store_id", nullable=false)
     private Store store;
 }
