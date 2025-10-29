@@ -1,7 +1,10 @@
 package com.example.umc9th.domain.store.entity;
 
+import com.example.umc9th.domain.mission.entity.Mission;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Builder
@@ -24,4 +27,7 @@ public class Store {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "region_id", nullable=false)
     private Region region;
+
+    @OneToMany(mappedBy = "store")
+    private List<Mission> missions;
 }

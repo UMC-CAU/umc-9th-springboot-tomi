@@ -1,6 +1,5 @@
 package com.example.umc9th.domain.member.entity;
 
-import com.example.umc9th.domain.member.enums.FoodCategory;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,6 +16,5 @@ public class Food {
     private Long id;
 
     @Column(name = "name", nullable=false)
-    @Enumerated(EnumType.STRING)
-    private FoodCategory name;
+    private String name;
 }

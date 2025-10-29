@@ -24,10 +24,10 @@ public class Member extends BaseEntity {
     private String email;
 
     @Column(name="social_id", length=50, nullable=false, unique=true)
-    String social_id;
+    private String social_id;
 
     @Column(name="social_type", nullable=false)
-    String social_type;
+    private String social_type;
 
     @Column(name = "name", length=10, nullable=false)
     private String name;
@@ -38,13 +38,13 @@ public class Member extends BaseEntity {
     private Gender gender = Gender.NONE;
 
     @Column(name = "birth_date", nullable=false)
-    LocalDateTime birth_date;
+    private LocalDateTime birth_date;
 
     @Column(name = "address", length = 50, nullable=false)
-    String address;
+    private String address;
 
     @Column(name = "phone_number", length=20)
-    String phone_number;
+    private String phone_number;
 
     @Column(name = "point", nullable=false)
     @Builder.Default
@@ -53,8 +53,8 @@ public class Member extends BaseEntity {
     @Column(name = "state", nullable=false)
     @Enumerated(EnumType.STRING)
     @Builder.Default
-    State state = State.ACTIVE;
+    private State state = State.ACTIVE;
 
     @Column(name = "deleted_at")
-    LocalDateTime deleted_at;
+    private LocalDateTime deleted_at;
 }

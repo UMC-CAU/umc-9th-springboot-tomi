@@ -1,7 +1,5 @@
-package com.example.umc9th.domain.member_term.entity;
+package com.example.umc9th.domain.member.entity;
 
-import com.example.umc9th.domain.member.entity.Member;
-import com.example.umc9th.domain.member.entity.Term;
 import jakarta.persistence.*;
 import lombok.*;
 
