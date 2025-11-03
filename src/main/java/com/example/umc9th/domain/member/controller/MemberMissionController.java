@@ -17,7 +17,7 @@ public class MemberMissionController {
     private final MemberMissionRepository memberMissionRepository;
 
     //test 용임 controller에서 repo 바로 접근 비추
-    @GetMapping("member/{memberId}/missions")
+    @GetMapping("/member/{memberId}/missions")
     public List<MemberMissionDto> getMissionsByStatus(
             @PathVariable Long memberId,
             @RequestParam Status status,
