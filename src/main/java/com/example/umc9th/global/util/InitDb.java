@@ -1,11 +1,8 @@
-package com.example.umc9th;
+package com.example.umc9th.global.util;
 
 import com.example.umc9th.domain.member.entity.Member;
-import com.example.umc9th.domain.member.entity.MemberMission;
 import com.example.umc9th.domain.member.enums.Gender;
 import com.example.umc9th.domain.member.enums.State;
-import com.example.umc9th.domain.member.enums.Status;
-import com.example.umc9th.domain.mission.entity.Mission;
 import com.example.umc9th.domain.review.entity.Review;
 import com.example.umc9th.domain.store.entity.Region;
 import com.example.umc9th.domain.store.entity.Store;
