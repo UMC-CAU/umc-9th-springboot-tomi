@@ -4,6 +4,7 @@ import com.example.umc9th.domain.mission.entity.Mission;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -29,5 +30,5 @@ public class Store {
     private Region region;
 
     @OneToMany(mappedBy = "store")
-    private List<Mission> missions;
+    private List<Mission> missions = new ArrayList<>();
 }
