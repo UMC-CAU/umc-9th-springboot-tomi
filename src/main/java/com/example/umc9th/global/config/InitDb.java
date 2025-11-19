@@ -1,4 +1,4 @@
-package com.example.umc9th.global.util;
+package com.example.umc9th.global.config;
 
 import com.example.umc9th.domain.member.entity.Member;
 import com.example.umc9th.domain.member.enums.Gender;

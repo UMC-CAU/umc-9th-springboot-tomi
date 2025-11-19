@@ -35,4 +35,7 @@ public interface MissionRepository extends JpaRepository<Mission, Long> {
             @Param("cursorCreatedAt") LocalDateTime cursorCreatedAt, @Param("cursorMissionId") Long cursorMissionId,
             Pageable pageable
     );
+
+
+    Mission findByid(Long id);
 }

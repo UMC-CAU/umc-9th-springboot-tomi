@@ -1,12 +1,16 @@
 package com.example.umc9th.domain.review.service;
 
-import com.example.umc9th.domain.review.dto.ReviewResponseDTO;
-import com.example.umc9th.domain.review.dto.ReviewSearchDTO;
-import com.example.umc9th.domain.review.entity.QReview;
+import com.example.umc9th.domain.member.entity.Member;
+import com.example.umc9th.domain.member.repository.MemberRepository;
+import com.example.umc9th.domain.member.repository.StoreRepository;
+import com.example.umc9th.domain.review.converter.ReviewResConvertor;
+import com.example.umc9th.domain.review.dto.ReviewResDTO;
+import com.example.umc9th.domain.review.dto.ReviewReqDTO;
 import com.example.umc9th.domain.review.entity.Review;
+import com.example.umc9th.domain.review.exception.ReviewException;
+import com.example.umc9th.domain.review.exception.code.ReviewErrorCode;
 import com.example.umc9th.domain.review.repository.ReviewRepository;
-import com.querydsl.core.BooleanBuilder;
-import com.querydsl.core.types.Predicate;
+import com.example.umc9th.domain.store.entity.Store;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,11 +21,19 @@ import java.util.List;
 public class ReviewService {
 
     private final ReviewRepository reviewRepository;
+    private final StoreRepository storeRepository;
+    private final MemberRepository memberRepository;
 
-    public List<ReviewResponseDTO> searchMyReview(ReviewSearchDTO reviewSearchDTO) {
-        List<Review> reviews = reviewRepository.searchMyReview(reviewSearchDTO);
+    //특정멤버 리뷰 read
+    public List<ReviewResDTO.searchDTO> searchMyReview(ReviewReqDTO.searchDTO reviewSearchDTO) {
+
+        Long memberId = reviewSearchDTO.memberId();
+        Long storeId = reviewSearchDTO.storeId();
+        Integer score = reviewSearchDTO.score();
+        List<Review> reviews = reviewRepository.searchMyReview(memberId, storeId, score);
+
         return reviews.stream()
-                .map(r -> new ReviewResponseDTO(
+                .map(r -> new ReviewResDTO.searchDTO(
                         r.getId(),
                         r.getContent(),
                         r.getScore(),
@@ -31,5 +43,30 @@ public class ReviewService {
                         r.getMember().getName()
                 ))
                 .toList();
+    }
+
+    //특정 가게에 리뷰 작성
+    public ReviewResDTO.createDTO createReview(Long storeId, Long memberId, ReviewReqDTO.createDTO req
+    ) {
+
+        if (req.score() < 0 || req.score() > 5) {
+            throw new ReviewException(ReviewErrorCode.INVALID_SCORE);
+        }
+
+        Store store = storeRepository.findByid(storeId);
+
+        Member member = memberRepository.findByid(memberId);
+
+        Review review = Review.builder()
+                .store(store)
+                .member(member)
+                .score(req.score())
+                .content(req.content())
+                .build();
+
+
+        Review saved = reviewRepository.save(review);
+
+        return ReviewResConvertor.toCreateDTO(saved);
     }
 }
