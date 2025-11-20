@@ -1,7 +1,6 @@
 package com.example.umc9th.domain.member.service;
 
 import com.example.umc9th.domain.member.converter.MemberMissionConvertor;
-import com.example.umc9th.domain.member.dto.MemberMissionDto;
 import com.example.umc9th.domain.member.dto.MemberMissionResDTO;
 import com.example.umc9th.domain.member.entity.Member;
 import com.example.umc9th.domain.member.entity.MemberMission;
@@ -16,9 +15,6 @@ import com.example.umc9th.domain.mission.exception.code.MissionErrorCode;
 import com.example.umc9th.domain.mission.repository.MissionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

@@ -1,18 +1,15 @@
 package com.example.umc9th.domain.member.controller;
 
-import com.example.umc9th.domain.member.dto.MemberMissionDto;
+import com.example.umc9th.domain.member.dto.MemberMissionDTO;
 import com.example.umc9th.domain.member.dto.MemberMissionResDTO;
-import com.example.umc9th.domain.member.entity.MemberMission;
 import com.example.umc9th.domain.member.enums.Status;
 import com.example.umc9th.domain.member.exception.code.MemberMissionSuccessCode;
 import com.example.umc9th.domain.member.repository.MemberMissionRepository;
 import com.example.umc9th.domain.member.service.MemberMissionService;
-import com.example.umc9th.domain.review.exception.code.ReviewSuccessCode;
 import com.example.umc9th.global.apiPayload.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,7 +23,7 @@ public class MemberMissionController {
 
     //test 용임 controller에서 repo 바로 접근 비추
     @GetMapping("/member/{memberId}/missions")
-    public List<MemberMissionDto> getMissionsByStatus(
+    public List<MemberMissionDTO> getMissionsByStatus(
             @PathVariable Long memberId,
             @RequestParam Status status,
             @RequestParam(defaultValue = "0") int page,
