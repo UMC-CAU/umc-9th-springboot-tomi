@@ -7,9 +7,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ReviewRepository extends JpaRepository<Review, Long> {
+public interface ReviewRepository extends JpaRepository<Review, Long>, ReviewRepositoryCustom {
+
     //쿼리 메소드 Review 조회 by member
     public List<Review> findByMemberId(Long memberId);
-
 
 }
