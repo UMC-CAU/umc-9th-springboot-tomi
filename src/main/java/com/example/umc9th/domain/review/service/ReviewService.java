@@ -1,6 +1,8 @@
 package com.example.umc9th.domain.review.service;
 
 import com.example.umc9th.domain.member.entity.Member;
+import com.example.umc9th.domain.member.exception.MemberException;
+import com.example.umc9th.domain.member.exception.code.MemberErrorCode;
 import com.example.umc9th.domain.member.repository.MemberRepository;
 import com.example.umc9th.domain.member.repository.StoreRepository;
 import com.example.umc9th.domain.review.converter.ReviewResConvertor;
@@ -11,6 +13,8 @@ import com.example.umc9th.domain.review.exception.ReviewException;
 import com.example.umc9th.domain.review.exception.code.ReviewErrorCode;
 import com.example.umc9th.domain.review.repository.ReviewRepository;
 import com.example.umc9th.domain.store.entity.Store;
+import com.example.umc9th.domain.store.exception.StoreException;
+import com.example.umc9th.domain.store.exception.code.StoreErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -53,9 +57,11 @@ public class ReviewService {
             throw new ReviewException(ReviewErrorCode.INVALID_SCORE);
         }
 
-        Store store = storeRepository.findByid(storeId);
+        Store store = storeRepository.findById(storeId)
+                .orElseThrow(() -> new StoreException(StoreErrorCode.NOT_FOUND));
 
-        Member member = memberRepository.findByid(memberId);
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new MemberException(MemberErrorCode.NOT_FOUND));
 
         Review review = Review.builder()
                 .store(store)

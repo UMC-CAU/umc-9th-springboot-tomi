@@ -4,6 +4,7 @@ import com.example.umc9th.domain.member.dto.MemberMissionDto;
 import com.example.umc9th.domain.member.dto.MemberMissionResDTO;
 import com.example.umc9th.domain.member.entity.MemberMission;
 import com.example.umc9th.domain.member.enums.Status;
+import com.example.umc9th.domain.member.exception.code.MemberMissionSuccessCode;
 import com.example.umc9th.domain.member.repository.MemberMissionRepository;
 import com.example.umc9th.domain.member.service.MemberMissionService;
 import com.example.umc9th.domain.review.exception.code.ReviewSuccessCode;
@@ -37,15 +38,16 @@ public class MemberMissionController {
         );
     }
 
+    //특정 미션을 도전 중인 미션에 추가
     @PostMapping("/missions/{missionId}/participate")
     public ApiResponse<MemberMissionResDTO.participate> participate(
             @PathVariable Long missionId,
             Long memberId //TODO : 수정예정
     ) {
 
-        MemberMissionResDTO.participate c = memberMissionService.participateMission(missionId, memberId);
+        MemberMissionResDTO.participate participate = memberMissionService.participateMission(missionId, memberId);
 
-        return ApiResponse.onSuccess(ReviewSuccessCode.CREATED, c);
+        return ApiResponse.onSuccess(MemberMissionSuccessCode.CREATED, participate);
     }
 
 }
