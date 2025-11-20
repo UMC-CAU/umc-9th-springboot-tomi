@@ -7,6 +7,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Builder
@@ -57,4 +59,8 @@ public class Member extends BaseEntity {
 
     @Column(name = "deleted_at")
     private LocalDateTime deleted_at;
+
+    @OneToMany(mappedBy = "member")
+    @Builder.Default
+    private List<MemberFood> memberFoods = new ArrayList<>();
 }

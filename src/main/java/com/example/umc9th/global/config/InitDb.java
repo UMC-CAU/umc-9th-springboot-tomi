@@ -1,4 +1,4 @@
-package com.example.umc9th;
+package com.example.umc9th.global.config;
 
 import com.example.umc9th.domain.member.entity.Member;
 import com.example.umc9th.domain.member.entity.MemberMission;
@@ -6,6 +6,7 @@ import com.example.umc9th.domain.member.enums.Gender;
 import com.example.umc9th.domain.member.enums.State;
 import com.example.umc9th.domain.member.enums.Status;
 import com.example.umc9th.domain.mission.entity.Mission;
+import com.example.umc9th.domain.review.entity.Review;
 import com.example.umc9th.domain.store.entity.Region;
 import com.example.umc9th.domain.store.entity.Store;
 import jakarta.annotation.PostConstruct;
@@ -55,19 +56,27 @@ public class InitDb {
 
             em.persist(region);
 
-            Store store = Store.builder()
+            Store store1 = Store.builder()
                     .name("맛집")
-                    .address("서울시 강남구 역삼동")
+                    .address("301-2313")
                     .region(region)
                     .build();
 
-            em.persist(store);
+            em.persist(store1);
+
+            Store store2 = Store.builder()
+                    .name("맛집2")
+                    .address("301-2221")
+                    .region(region)
+                    .build();
+
+            em.persist(store2);
 
             Mission mission1 = Mission.builder()
                     .content("첫번째 미션")
                     .score(100)
                     .deadline(LocalDateTime.now().plusDays(7))
-                    .store(store)
+                    .store(store1)
                     .build();
 
             em.persist(mission1);
@@ -76,7 +85,7 @@ public class InitDb {
                     .content("두번째 미션")
                     .score(200)
                     .deadline(LocalDateTime.now().plusDays(7))
-                    .store(store)
+                    .store(store1)
                     .build();
 
             em.persist(mission2);
@@ -85,7 +94,7 @@ public class InitDb {
                     .content("세번째 미션")
                     .score(150)
                     .deadline(LocalDateTime.now().plusDays(7))
-                    .store(store)
+                    .store(store1)
                     .build();
 
             em.persist(mission3);
@@ -94,7 +103,7 @@ public class InitDb {
                     .content("네번째 미션")
                     .score(220)
                     .deadline(LocalDateTime.now().plusDays(7))
-                    .store(store)
+                    .store(store1)
                     .build();
 
             em.persist(mission4);
@@ -122,6 +131,40 @@ public class InitDb {
                     .build();
 
             em.persist(challengeMission1);
+
+            //================================ ch 6 과제에서 사용==========================================
+
+            Review review1 = Review.builder()
+                    .member(member)
+                    .store(store1)
+                    .score(3.5f)
+                    .content("맛있고 친절해요!")
+                    .build();
+            em.persist(review1);
+
+            Review review2 = Review.builder()
+                    .member(member)
+                    .store(store1)
+                    .score(4.2f)
+                    .content("맛있지만 조금 비싸요")
+                    .build();
+            em.persist(review2);
+
+            Review review3 = Review.builder()
+                    .member(member)
+                    .store(store2)
+                    .score(5.0f)  // 5점
+                    .content("딜리셔스!~!~!~!")
+                    .build();
+            em.persist(review3);
+
+            Review review4 = Review.builder()
+                    .member(member)
+                    .store(store1)
+                    .score(3.8f)
+                    .content("무난해요")
+                    .build();
+            em.persist(review4);
         }
     }
 }

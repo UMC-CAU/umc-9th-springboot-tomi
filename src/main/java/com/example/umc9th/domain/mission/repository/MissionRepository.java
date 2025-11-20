@@ -14,7 +14,8 @@ import java.util.List;
 @Repository
 public interface MissionRepository extends JpaRepository<Mission, Long> {
     @Query("""
-        SELECT new com.example.umc9th.domain.mission.dto.MissionRegionDto(
+
+            SELECT new com.example.umc9th.domain.mission.dto.MissionRegionDto(
             r.id,r.name,m.id,m.content,m.deadline,m.score)
         FROM Region r
         JOIN r.stores s
