@@ -1,7 +1,6 @@
-package com.example.umc9th.domain.member_mission.entity;
+package com.example.umc9th.domain.member.entity;
 
-import com.example.umc9th.domain.member.entity.Member;
-import com.example.umc9th.domain.member_mission.enums.Status;
+import com.example.umc9th.domain.member.enums.Status;
 import com.example.umc9th.domain.mission.entity.Mission;
 import jakarta.persistence.*;
 import lombok.*;

@@ -3,6 +3,8 @@ package com.example.umc9th.domain.store.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -17,4 +19,7 @@ public class Region {
 
     @Column(name="name", length = 50,nullable=false)
     private String name;
+
+    @OneToMany(mappedBy = "region")
+    private List<Store> stores;
 }
