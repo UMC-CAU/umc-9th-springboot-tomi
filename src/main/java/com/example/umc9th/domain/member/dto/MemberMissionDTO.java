@@ -10,7 +10,7 @@ public class MemberMissionDTO {
     private Long member_id;
     private Long mission_id;
     private String content;
-    private int score;
+    private Float score;
     private Status status;
     private String storeName;
 }

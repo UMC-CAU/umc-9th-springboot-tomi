@@ -2,6 +2,9 @@ package com.example.umc9th.domain.mission.repository;
 
 import com.example.umc9th.domain.mission.dto.MissionRegionDto;
 import com.example.umc9th.domain.mission.entity.Mission;
+import com.example.umc9th.domain.store.entity.Store;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -36,4 +39,16 @@ public interface MissionRepository extends JpaRepository<Mission, Long> {
             @Param("cursorCreatedAt") LocalDateTime cursorCreatedAt, @Param("cursorMissionId") Long cursorMissionId,
             Pageable pageable
     );
+
+    Page<Mission> findAllByStore(Store store, Pageable pageable);
+
+    @Query("""
+        SELECT m
+        FROM MemberMission mm
+        JOIN mm.mission m
+        WHERE mm.member.id = :memberId
+          AND mm.status = 'CHALLENGE'
+    """)
+    Page<Mission> findMyChallengeMissions(@Param("memberId") Long memberId, Pageable pageable);
+
 }

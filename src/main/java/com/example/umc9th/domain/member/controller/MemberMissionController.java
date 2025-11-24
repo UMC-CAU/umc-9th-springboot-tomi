@@ -18,22 +18,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MemberMissionController {
 
-    private final MemberMissionRepository memberMissionRepository;
     private final MemberMissionService memberMissionService;
 
-    //test 용임 controller에서 repo 바로 접근 비추
-    @GetMapping("/member/{memberId}/missions")
-    public List<MemberMissionDTO> getMissionsByStatus(
-            @PathVariable Long memberId,
-            @RequestParam Status status,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "3") int size
-    ) {
-        Pageable pageable = PageRequest.of(page, size);
-        return memberMissionRepository.findMissionsByStatus(
-                memberId, status, pageable
-        );
-    }
 
     //특정 미션을 도전 중인 미션에 추가
     @PostMapping("/missions/{missionId}/participate")
