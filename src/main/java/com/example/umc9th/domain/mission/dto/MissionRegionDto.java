@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
@@ -14,6 +15,6 @@ public class MissionRegionDto {
     private String regionName;
     private Long missionId;
     private String content;
-    private LocalDateTime deadline;
-    private int score;
+    private LocalDate deadline;
+    private float score;
 }

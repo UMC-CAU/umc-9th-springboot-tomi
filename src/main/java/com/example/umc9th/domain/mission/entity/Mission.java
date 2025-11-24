@@ -5,6 +5,7 @@ import com.example.umc9th.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -23,10 +24,13 @@ public class Mission extends BaseEntity {
     private String content;
 
     @Column(name="deadline", nullable=false)
-    private LocalDateTime deadline;
+    private LocalDate deadline;
 
     @Column(name="score", nullable=false)
-    private int score;
+    private Float score;
+
+    @Column(name = "name", length=10, nullable=false)
+    private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id", nullable=false)
