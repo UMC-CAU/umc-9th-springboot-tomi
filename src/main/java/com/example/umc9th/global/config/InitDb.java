@@ -39,6 +39,7 @@ public class InitDb {
                     .email("test@example.com")
                     .social_id("social123")
                     .social_type("KAKAO")
+                    .password("1234")
                     .name("홍길동")
                     .gender(Gender.MALE)
                     .birth_date(LocalDateTime.of(1995, 1, 1, 0, 0))

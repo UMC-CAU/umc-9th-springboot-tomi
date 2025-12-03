@@ -4,6 +4,7 @@ import com.example.umc9th.domain.member.dto.MemberReqDTO;
 import com.example.umc9th.domain.member.dto.MemberResDTO;
 import com.example.umc9th.domain.member.exception.code.MemberSuccessCode;
 import com.example.umc9th.domain.member.service.command.MemberCommandService;
+import com.example.umc9th.domain.member.service.query.MemberQueryService;
 import com.example.umc9th.global.apiPayload.ApiResponse;
 import com.example.umc9th.global.apiPayload.code.GeneralErrorCode;
 import jakarta.validation.Valid;
@@ -23,12 +24,19 @@ import java.util.Map;
 public class MemberController {
 
     private final MemberCommandService memberCommandService;
+    private final MemberQueryService memberQueryService;
 
     @PostMapping("/sign-up")
     public ApiResponse<MemberResDTO.JoinDTO> signUp(@RequestBody @Valid MemberReqDTO.JoinDTO dto){
         return ApiResponse.onSuccess(MemberSuccessCode.FOUND, memberCommandService.signUp(dto));
     }
 
-
+    // 로그인
+    @PostMapping("/login")
+    public ApiResponse<MemberResDTO.LoginDTO> login(
+            @RequestBody @Valid MemberReqDTO.LoginDTO dto
+    ){
+        return ApiResponse.onSuccess(MemberSuccessCode.FOUND, memberQueryService.login(dto));
+    }
 
 }
